@@ -49,7 +49,7 @@ def main():
             raw_path = get_raw_path(cam_name)
             # move completed video files to date folder
             for filename in os.listdir(raw_path):
-                if filename.endswith(".mkv"):
+                if filename.endswith(".mp4"):
                     move_completed_file(cam_name, filename)
             # check for presence of new video files
             raw_files = os.listdir(raw_path)
