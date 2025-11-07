@@ -47,7 +47,8 @@ def convert_file(mkv_path: Path):
     cmd = [
         "ffmpeg", "-hide_banner", "-y", "-loglevel", "error",
         "-i", str(mkv_path),
-        "-c", "copy",                     # Copy streams without re-encoding
+        "-c:v", "copy",                   # Copy streams without re-encoding
+        "-c:a", "aac", "-b:a", "128k",    # convert pcm_alaw → aac (supported by mp4) 
         "-movflags", "+faststart",        # Optimize for web playback
         "-avoid_negative_ts", "make_zero",# Normalize timestamps
         str(mp4_path)
