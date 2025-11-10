@@ -1,15 +1,18 @@
-FROM python:alpine
+FROM python:3.12-slim
 
-LABEL author="cyb3rdoc" maintainer="cyb3rdoc@proton.me"
-
-RUN apk update \
-  && apk add --no-cache \
-	ffmpeg \
-  && rm -rf /var/cache/apk/*
+RUN apt update && apt install -y \
+    build-essential \
+    gcc \
+    g++ \
+    make \
+    python3-dev \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 COPY ./requirements.txt .
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./src /
