@@ -1,7 +1,5 @@
 FROM python:alpine
 
-LABEL author="cyb3rdoc" maintainer="cyb3rdoc@proton.me"
-
 RUN apk update \
   && apk add --no-cache \
 	ffmpeg \
