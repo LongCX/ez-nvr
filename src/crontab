@@ -1,3 +1,3 @@
 */20    *       *       *       *       python /app/convert.py
-*/35    *       *       *       *       python /app/extra_motion.py
+*/28    *       *       *       *       python /app/extra_motion.py
 0       2       *       *       *       python /app/deletion.py
