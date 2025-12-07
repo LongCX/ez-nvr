@@ -12,8 +12,8 @@ RUN apk add --no-cache python3 py3-pip && \
     rm -rf /root/.cache /var/cache/apk/*
 
 WORKDIR /app
-COPY src/ /app/
-COPY crontab /etc/crontabs/root
+COPY ./src /
+RUN cat /crontab >> /etc/crontabs/root && rm /crontab
 
 VOLUME ["/config", "/storage"]
 
