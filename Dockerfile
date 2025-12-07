@@ -1,9 +1,12 @@
 FROM alpine:3.20
 
-ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz /tmp/ffmpeg.tar.xz
-RUN tar -xJf /tmp/ffmpeg.tar.xz -C /usr/local/bin --strip-components=1 \
-    --wildcards "*/ffmpeg" "*/ffprobe" && \
+RUN apk add --no-cache curl tar xz && \
+    curl -L -o /tmp/ffmpeg.tar.xz \
+         https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz && \
+    tar -xJf /tmp/ffmpeg.tar.xz -C /usr/local/bin --strip-components=1 \
+        --wildcards "ffmpeg-*-static/ffmpeg" "ffmpeg-*-static/ffprobe" && \
     rm /tmp/ffmpeg.tar.xz && \
+    apk del curl tar xz && \
     ffmpeg -version && ffprobe -version
 
 RUN apk add --no-cache python3 py3-pip && \
